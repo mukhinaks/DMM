@@ -1,0 +1,142 @@
+using System;
+using System.Collections.Generic;
+namespace Game
+{
+	//изменение
+	class EventFirstType : DEVS.ModelEvent
+	{
+		private int X;
+		private int Y;
+		private Field field;
+
+		public EventFirstType(Field f, int x, int y)
+			: base()
+		{
+			field = f;
+			X = x;
+			Y = y;
+		}
+
+		public override void Execute()
+		{		
+		
+				switch (field.getField()[X][Y] )
+				{
+					case 2:
+						field.getNextField()[X][Y] = 0;
+						break;
+					case 0:
+						field.getNextField()[X][Y] = 2;
+						break;
+					default:
+						field.getNextField()[X][Y] = 0;
+						break;
+				}
+			//field.getWatchField()[X][Y] = 1;
+			//field.listToModify.AddLast(new Tuple<int,int>(X,Y));
+			field.addBuddy(new Tuple<int,int>(X,Y));
+
+			
+		}
+	}
+
+	//просмотр
+	class EventSecondType : DEVS.ModelEvent
+	{
+		private Field field;
+		private bool changes = false;
+		LinkedList<Tuple<int, int>> list = new LinkedList<Tuple<int,int>>();
+
+		public EventSecondType (Field f)
+			: base()
+		{
+			field = f;
+		}
+
+		public void AddNeighborsToList(Tuple<int,int> t){
+			int i = t.Item1;
+			int j = t.Item2;
+			for (int k = 0; k < 3; k++)
+						{
+							for (int m = 0; m < 3; m++)
+							{
+								int x = field.tryBound(i - 1 + k);
+								int y = field.tryBound(j - 1 + m);
+								if (x==i && y==j) continue;
+								if (field.getWatchField()[x][y] != 1)
+								{
+									field.getWatchField()[x][y] = 1;
+									list.AddLast(new Tuple<int,int>(x,y));
+
+									//DEVS.ProcessNextEvent();
+								}								
+							}
+						}
+		}
+
+		public override void Execute()
+		{
+			foreach(var t in field.listToModify){
+				//var t = field.listToModify.Dequeue();
+				var cell = field.getField()[t.Item1][t.Item2];
+				switch(cell){
+					case 2:
+						if(field.checkDead(t.Item1, t.Item2)){
+							//AddNeighborsToList(t);
+							EventFirstType eF = new EventFirstType(this.field, t.Item1, t.Item2);
+							eF.eTime = this.eTime;
+							DEVS.ModelEvent.Enque(eF);
+							changes = true;
+						}
+						break;
+					case 0:
+						if(field.checkAlive(t.Item1, t.Item2)) {
+							//AddNeighborsToList(t);
+							EventFirstType eF = new EventFirstType(this.field, t.Item1, t.Item2);
+							eF.eTime = this.eTime;
+							DEVS.ModelEvent.Enque(eF);
+							changes = true;
+						}
+						break;
+					default:
+						break;
+				}
+				field.getWatchField()[t.Item1][t.Item2] = 0;
+
+			}
+			field.swapArrays(true);		
+
+			if (changes)
+			{
+				field.listToModify.Clear();
+				//foreach(var l in list){
+				//	field.listToModify.AddLast(l);
+				//}
+				EventThirdType eT = new EventThirdType(this.field);
+				eT.eTime = this.eTime;
+				DEVS.ModelEvent.Enque(eT);
+			}
+		}
+	}
+
+
+	//сдвиг по времени
+	class EventThirdType : DEVS.ModelEvent
+	{
+		private Field field;
+
+		public EventThirdType (Field f)
+			: base()
+		{
+			field = f;
+		}
+
+		public override void Execute()
+		{
+			EventSecondType eS = new EventSecondType(this.field);
+			eS.eTime = this.eTime + 1;
+			DEVS.ModelEvent.Enque(eS);
+			
+		}
+	}
+}

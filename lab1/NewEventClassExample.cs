@@ -69,13 +69,12 @@ namespace Game
 
 		public override void Execute()
 		{
-			field.swapArrays(true);		
 
 			for (int i = 0; i < field.cells; i++)
 			{
 				for (int j = 0; j < field.cells; j++)
 				{
-					if (field.getField()[i][j] == 2)
+					if (field.getField()[i][j] != field.getNextField()[i][j])
 					{
 						for (int k = 0; k < 3; k++)
 						{
@@ -97,6 +96,8 @@ namespace Game
 					}
 				}
 			}
+			field.swapArrays(true);		
+
 			//if (changes)
 			{
 				EventSecondType eS = new EventSecondType(this.field);

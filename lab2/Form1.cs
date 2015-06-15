@@ -13,7 +13,7 @@ namespace Game
     public partial class Form1 : Form
     {
 		static int cols = 20; 
-		static int rows = 20;
+		static int rows = 10;
 		static Field field = new Field(cols, rows);
 
         public Form1()
@@ -52,7 +52,7 @@ namespace Game
 							start.X = size * j;
 							if (field.getWatchField()[i][j] == 1)
 							{
-								g.FillRectangle(brushGray, start.X, start.Y, size, size);
+								//g.FillRectangle(brushGray, start.X, start.Y, size, size);
 							}
 							switch (field.getField()[i][j])
 							{
@@ -104,13 +104,13 @@ namespace Game
 				y /= size;
 				//x++;
 				//y++;
-				//field.getField()[y][x] = 2;
+				field.getField()[y][x] = 2;
 				field.getNextField()[y][x] = 2;
-
+				Tuple<int, int> t = new Tuple<int,int>(y,x); 
+				field.listToModify.AddLast(t);
 				//EventSecondType eS = new EventSecondType(field);
 				//eS.eTime = DEVS.GlobalTime;
 				//DEVS.EQ.AddEvent(eS);
-				//DEVS.ProcessNextEvent();
 
 				Brush brushRed = new SolidBrush(Color.Red);
 				g.FillRectangle(brushRed, size * x, size * y, size, size);

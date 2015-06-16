@@ -33,11 +33,11 @@ namespace Game
 				}
 			}
 			//planer
-			field[5][5] = 2;
-			field[6][6] = 2;
-			field[6][7] = 2;
-			field[7][5] = 2;
-			field[7][6] = 2;
+			//field[5][5] = 2;
+			//field[6][6] = 2;
+			//field[6][7] = 2;
+			//field[7][5] = 2;
+			//field[7][6] = 2;
 			
 			
 			//squares

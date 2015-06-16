@@ -51,8 +51,9 @@ namespace Game
 						{
 							start.X = size * j;
 							if (field.getWatchField()[i][j] == 1)
+								//if (field.listToModify.Contains(new Tuple<int,int>(i,j)))
 							{
-								g.FillRectangle(brushGray, start.X, start.Y, size, size);
+							//	g.FillRectangle(brushGray, start.X, start.Y, size, size);
 							}
 							switch (field.getField()[i][j])
 							{
@@ -71,12 +72,23 @@ namespace Game
 							}							
 						}
 					}
-					labelQueue.Text = "" + DEVS.EQ.QueueSize;
-					double time = DEVS.GlobalTime;
-					while (time == DEVS.GlobalTime)
+
+					
+						labelQueue.Text = "" + DEVS.GlobalTime;
+						double time = DEVS.EQ.GlobalTime;
+					//for (int i = 0; i < DEVS.EQ.QueueSize; i++)
+					//{
+					//	DEVS.ProcessNextEvent();
+					//	if (time != DEVS.EQ.GlobalTime) break;
+					//}
+					while (time == DEVS.EQ.GlobalTime)
 					{
-						if(DEVS.EQ.QueueSize != 0)	DEVS.ProcessNextEvent();
-					}										
+						DEVS.ProcessNextEvent();
+						//if (time == DEVS.EQ.GlobalTime) break;
+						if (DEVS.EQ.QueueSize == 0) break;
+					}
+							
+													
                 }
             }
             catch (Exception ex)
@@ -107,7 +119,7 @@ namespace Game
 				field.getField()[y][x] = 2;
 				field.getNextField()[y][x] = 2;
 				Tuple<int, int> t = new Tuple<int,int>(y,x); 
-				field.listToModify.AddLast(t);
+				field.addBuddy(t);
 				//EventSecondType eS = new EventSecondType(field);
 				//eS.eTime = DEVS.GlobalTime;
 				//DEVS.EQ.AddEvent(eS);
@@ -123,6 +135,13 @@ namespace Game
 
 		private void pnlGrid_Paint (object sender, PaintEventArgs e)
 		{
+		}
+
+		private void buttonModify_Click(object sender, EventArgs e)
+		{
+			EventThirdType eT = new EventThirdType(field);
+			eT.eTime = DEVS.EQ.GlobalTime;
+			DEVS.EQ.AddEvent(eT);
 		}
 	}
 }

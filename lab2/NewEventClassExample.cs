@@ -18,8 +18,7 @@ namespace Game
 		}
 
 		public override void Execute()
-		{		
-		
+		{				
 				switch (field.getField()[X][Y] )
 				{
 					case 2:
@@ -34,9 +33,7 @@ namespace Game
 				}
 			//field.getWatchField()[X][Y] = 1;
 			//field.listToModify.AddLast(new Tuple<int,int>(X,Y));
-			field.addBuddy(new Tuple<int,int>(X,Y));
-
-			
+			field.addBuddy(new Tuple<int,int>(X,Y));			
 		}
 	}
 
@@ -51,27 +48,6 @@ namespace Game
 			: base()
 		{
 			field = f;
-		}
-
-		public void AddNeighborsToList(Tuple<int,int> t){
-			int i = t.Item1;
-			int j = t.Item2;
-			for (int k = 0; k < 3; k++)
-						{
-							for (int m = 0; m < 3; m++)
-							{
-								int x = field.tryBound(i - 1 + k);
-								int y = field.tryBound(j - 1 + m);
-								if (x==i && y==j) continue;
-								if (field.getWatchField()[x][y] != 1)
-								{
-									field.getWatchField()[x][y] = 1;
-									//list.AddLast(new Tuple<int,int>(x,y));
-
-									//DEVS.ProcessNextEvent();
-								}								
-							}
-						}
 		}
 
 		public override void Execute()
@@ -101,13 +77,11 @@ namespace Game
 						break;
 				}
 				field.getWatchField()[t.Item1][t.Item2] = 0;
-
 			}
 
-			//if (changes)
+			if (changes)
 			{
-				field.listToModify.Clear();
-				
+				field.listToModify.Clear();				
 				EventThirdType eT = new EventThirdType(this.field);
 				eT.eTime = this.eTime;
 				DEVS.ModelEvent.Enque(eT);
@@ -131,8 +105,7 @@ namespace Game
 		{
 			EventSecondType eS = new EventSecondType(this.field);
 			eS.eTime = this.eTime + 1;
-			DEVS.ModelEvent.Enque(eS);
-			
+			DEVS.ModelEvent.Enque(eS);			
 		}
 	}
 }

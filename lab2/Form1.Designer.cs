@@ -33,6 +33,7 @@
 			this.labelQueue = new System.Windows.Forms.Label();
 			this.btnDraw = new System.Windows.Forms.Button();
 			this.lblCols = new System.Windows.Forms.Label();
+			this.buttonModify = new System.Windows.Forms.Button();
 			this.pnlOptions.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -52,6 +53,7 @@
 			// 
 			this.pnlOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlOptions.Controls.Add(this.buttonModify);
 			this.pnlOptions.Controls.Add(this.labelQueue);
 			this.pnlOptions.Controls.Add(this.btnDraw);
 			this.pnlOptions.Controls.Add(this.lblCols);
@@ -94,13 +96,27 @@
 			this.lblCols.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblCols.AutoSize = true;
-			this.lblCols.Location = new System.Drawing.Point(48, 227);
+			this.lblCols.Location = new System.Drawing.Point(0, 227);
 			this.lblCols.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.lblCols.MinimumSize = new System.Drawing.Size(150, 0);
 			this.lblCols.Name = "lblCols";
-			this.lblCols.Size = new System.Drawing.Size(50, 13);
+			this.lblCols.Size = new System.Drawing.Size(150, 13);
 			this.lblCols.TabIndex = 1;
-			this.lblCols.Text = "Очередь";
+			this.lblCols.Text = "Шаг итерации";
 			this.lblCols.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// buttonModify
+			// 
+			this.buttonModify.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.buttonModify.Location = new System.Drawing.Point(4, 151);
+			this.buttonModify.Margin = new System.Windows.Forms.Padding(2);
+			this.buttonModify.Name = "buttonModify";
+			this.buttonModify.Size = new System.Drawing.Size(143, 19);
+			this.buttonModify.TabIndex = 6;
+			this.buttonModify.Text = "Обновить";
+			this.buttonModify.UseVisualStyleBackColor = true;
+			this.buttonModify.Click += new System.EventHandler(this.buttonModify_Click);
 			// 
 			// Form1
 			// 
@@ -127,6 +143,7 @@
 		private System.Windows.Forms.Label lblCols;
         private System.Windows.Forms.Button btnDraw;
 		private System.Windows.Forms.Label labelQueue;
+		private System.Windows.Forms.Button buttonModify;
     }
 }
 

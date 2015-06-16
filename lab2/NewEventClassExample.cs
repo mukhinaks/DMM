@@ -66,7 +66,7 @@ namespace Game
 								if (field.getWatchField()[x][y] != 1)
 								{
 									field.getWatchField()[x][y] = 1;
-									list.AddLast(new Tuple<int,int>(x,y));
+									//list.AddLast(new Tuple<int,int>(x,y));
 
 									//DEVS.ProcessNextEvent();
 								}								
@@ -76,13 +76,13 @@ namespace Game
 
 		public override void Execute()
 		{
+			field.swapArrays(true);		
+			
 			foreach(var t in field.listToModify){
-				//var t = field.listToModify.Dequeue();
 				var cell = field.getField()[t.Item1][t.Item2];
 				switch(cell){
 					case 2:
 						if(field.checkDead(t.Item1, t.Item2)){
-							//AddNeighborsToList(t);
 							EventFirstType eF = new EventFirstType(this.field, t.Item1, t.Item2);
 							eF.eTime = this.eTime;
 							DEVS.ModelEvent.Enque(eF);
@@ -91,7 +91,6 @@ namespace Game
 						break;
 					case 0:
 						if(field.checkAlive(t.Item1, t.Item2)) {
-							//AddNeighborsToList(t);
 							EventFirstType eF = new EventFirstType(this.field, t.Item1, t.Item2);
 							eF.eTime = this.eTime;
 							DEVS.ModelEvent.Enque(eF);
@@ -104,14 +103,11 @@ namespace Game
 				field.getWatchField()[t.Item1][t.Item2] = 0;
 
 			}
-			field.swapArrays(true);		
 
-			if (changes)
+			//if (changes)
 			{
 				field.listToModify.Clear();
-				//foreach(var l in list){
-				//	field.listToModify.AddLast(l);
-				//}
+				
 				EventThirdType eT = new EventThirdType(this.field);
 				eT.eTime = this.eTime;
 				DEVS.ModelEvent.Enque(eT);

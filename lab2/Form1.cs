@@ -52,7 +52,7 @@ namespace Game
 							start.X = size * j;
 							if (field.getWatchField()[i][j] == 1)
 							{
-								//g.FillRectangle(brushGray, start.X, start.Y, size, size);
+								g.FillRectangle(brushGray, start.X, start.Y, size, size);
 							}
 							switch (field.getField()[i][j])
 							{
@@ -75,7 +75,7 @@ namespace Game
 					double time = DEVS.GlobalTime;
 					while (time == DEVS.GlobalTime)
 					{
-						DEVS.ProcessNextEvent();
+						if(DEVS.EQ.QueueSize != 0)	DEVS.ProcessNextEvent();
 					}										
                 }
             }

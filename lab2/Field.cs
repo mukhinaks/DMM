@@ -33,18 +33,18 @@ namespace Game
 				}
 			}
 			//planer
-			//field[5][5] = 2;
-			//field[6][6] = 2;
-			//field[6][7] = 2;
-			//field[7][5] = 2;
-			//field[7][6] = 2;
+			field[5][5] = 2;
+			field[6][6] = 2;
+			field[6][7] = 2;
+			field[7][5] = 2;
+			field[7][6] = 2;
 			
 			
 			//squares
-			field[5][5] = 2;
-			field[5][6] = 2;
-			field[6][5] = 2;
-			field[6][6] = 2;
+			//field[5][5] = 2;
+			//field[5][6] = 2;
+			//field[6][5] = 2;
+			//field[6][6] = 2;
 
 			//field[4][7] = 2;
 			//field[4][8] = 2;
@@ -61,7 +61,7 @@ namespace Game
 					if (getField()[i][j] == 2)
 					{
 						var t = new Tuple<int,int>(i,j);
-						listToModify.AddLast(t);
+						//listToModify.AddLast(t);
 						addBuddy(t);
 					}
 				}

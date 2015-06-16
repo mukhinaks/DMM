@@ -73,18 +73,14 @@ namespace Game
 						}
 					}
 
+
+					labelIteration.Text = "" + DEVS.GlobalTime;
+					labelQueue.Text = "" + DEVS.EQ.QueueSize;
+					double time = DEVS.EQ.GlobalTime;
 					
-						labelQueue.Text = "" + DEVS.GlobalTime;
-						double time = DEVS.EQ.GlobalTime;
-					//for (int i = 0; i < DEVS.EQ.QueueSize; i++)
-					//{
-					//	DEVS.ProcessNextEvent();
-					//	if (time != DEVS.EQ.GlobalTime) break;
-					//}
 					while (time == DEVS.EQ.GlobalTime)
 					{
 						DEVS.ProcessNextEvent();
-						//if (time == DEVS.EQ.GlobalTime) break;
 						if (DEVS.EQ.QueueSize == 0) break;
 					}
 							
@@ -140,8 +136,17 @@ namespace Game
 		private void buttonModify_Click(object sender, EventArgs e)
 		{
 			EventThirdType eT = new EventThirdType(field);
-			eT.eTime = DEVS.EQ.GlobalTime;
+			eT.eTime = DEVS.GlobalTime;
 			DEVS.EQ.AddEvent(eT);
+
+			double time = DEVS.EQ.GlobalTime;
+
+			while (time == DEVS.EQ.GlobalTime)
+			{
+				DEVS.ProcessNextEvent();
+				if (DEVS.EQ.QueueSize == 0) break;
+			}
+
 		}
 	}
 }

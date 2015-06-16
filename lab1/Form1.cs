@@ -54,7 +54,7 @@ namespace Game
 							{
 								g.FillRectangle(brushGray, start.X, start.Y, size, size);
 							}
-							switch (field.getField()[i][j])
+							switch (field.getNextField()[i][j])
 							{
 								case 0:
 									g.DrawRectangle(p, start.X, start.Y, size, size);
@@ -106,7 +106,7 @@ namespace Game
 				//y++;
 				//field.getField()[y][x] = 2;
 				field.getNextField()[y][x] = 2;
-
+				//DEVS.EQ.GlobalTime ++;
 				//EventSecondType eS = new EventSecondType(field);
 				//eS.eTime = DEVS.GlobalTime;
 				//DEVS.EQ.AddEvent(eS);

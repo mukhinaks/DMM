@@ -53,9 +53,9 @@ namespace Game
 							if (field.getWatchField()[i][j] == 1)
 								//if (field.listToModify.Contains(new Tuple<int,int>(i,j)))
 							{
-							//	g.FillRectangle(brushGray, start.X, start.Y, size, size);
+								g.FillRectangle(brushGray, start.X, start.Y, size, size);
 							}
-							switch (field.getField()[i][j])
+							switch (field.getNextField()[i][j])
 							{
 								case 0:
 									g.DrawRectangle(p, start.X, start.Y, size, size);
@@ -78,10 +78,10 @@ namespace Game
 					labelQueue.Text = "" + DEVS.EQ.QueueSize;
 					double time = DEVS.EQ.GlobalTime;
 					
-					while (time == DEVS.EQ.GlobalTime)
+					//while (time == DEVS.EQ.GlobalTime)
 					{
 						DEVS.ProcessNextEvent();
-						if (DEVS.EQ.QueueSize == 0) break;
+						//if (DEVS.EQ.QueueSize == 0) break;
 					}
 							
 													
@@ -141,10 +141,10 @@ namespace Game
 
 			double time = DEVS.EQ.GlobalTime;
 
-			while (time == DEVS.EQ.GlobalTime)
+			//while (time == DEVS.EQ.GlobalTime)
 			{
 				DEVS.ProcessNextEvent();
-				if (DEVS.EQ.QueueSize == 0) break;
+				//if (DEVS.EQ.QueueSize == 0) break;
 			}
 
 		}

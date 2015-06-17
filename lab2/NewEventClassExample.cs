@@ -31,7 +31,7 @@ namespace Game
 						field.getNextField()[X][Y] = 0;
 						break;
 				}
-			//field.getWatchField()[X][Y] = 1;
+			//field.getWatchField()[X][Y] = 0;
 			//field.listToModify.AddLast(new Tuple<int,int>(X,Y));
 			field.addBuddy(new Tuple<int,int>(X,Y));			
 		}
@@ -81,10 +81,13 @@ namespace Game
 
 			if (changes)
 			{
-				field.listToModify.Clear();				
-				EventThirdType eT = new EventThirdType(this.field);
-				eT.eTime = this.eTime;
-				DEVS.ModelEvent.Enque(eT);
+				field.listToModify.Clear();
+				EventSecondType eS = new EventSecondType(this.field);
+				eS.eTime = this.eTime;
+				DEVS.ModelEvent.Enque(eS);	
+				//EventThirdType eT = new EventThirdType(this.field);
+				//eT.eTime = this.eTime;
+				//DEVS.ModelEvent.Enque(eT);
 			}
 		}
 	}

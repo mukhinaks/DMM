@@ -158,7 +158,10 @@ namespace Game
 					if (getWatchField()[x][y] != 1)
 					{
 						getWatchField()[x][y] = 1;
-						listToModify.AddLast(new Tuple<int,int>(x,y));
+						//listToModify.AddLast(new Tuple<int,int>(x,y));
+						EventSecondType eS = new EventSecondType(this, x, y);
+						eS.eTime = DEVS.GlobalTime;
+						DEVS.EQ.AddEvent(eS);
 					}								
 				}
 			}

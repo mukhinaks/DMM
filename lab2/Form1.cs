@@ -21,7 +21,7 @@ namespace Game
             InitializeComponent();
 
 			
-			DEVS.AddStartEvent(new EventSecondType(field));
+			DEVS.AddStartEvent(new EventSecondType(field, 0, 0));
         }
 
         private void btnDraw_Click(object sender, EventArgs e)
@@ -39,6 +39,8 @@ namespace Game
                     Pen p = new Pen(Color.Black, 1.5f);
 					Brush brushRed = new SolidBrush(Color.Red);
 					Brush brushGray = new SolidBrush(Color.Gray);
+					Brush brushPurple = new SolidBrush(Color.Purple);
+					Brush brushGreen = new SolidBrush(Color.Green);
 
                     Point start = new Point(0, 0);
 					int size = (int) Math.Min((g.VisibleClipBounds.Height - 5) / rows, (g.VisibleClipBounds.Width - 5) / rows);
@@ -55,7 +57,7 @@ namespace Game
 							{
 								g.FillRectangle(brushGray, start.X, start.Y, size, size);
 							}
-							switch (field.getNextField()[i][j])
+							switch (field.getField()[i][j])
 							{
 								case 0:
 									g.DrawRectangle(p, start.X, start.Y, size, size);
@@ -65,6 +67,12 @@ namespace Game
 									break;
 								case 2:
 									g.FillRectangle(brushRed, start.X, start.Y, size, size);
+									break;
+								case 3:
+									g.FillRectangle(brushPurple, start.X, start.Y, size, size);
+									break;
+								case 4:
+									g.FillRectangle(brushGreen, start.X, start.Y, size, size);
 									break;
 								default:
 									Console.WriteLine("Error");
@@ -135,9 +143,9 @@ namespace Game
 
 		private void buttonModify_Click(object sender, EventArgs e)
 		{
-			EventThirdType eT = new EventThirdType(field);
-			eT.eTime = DEVS.GlobalTime;
-			DEVS.EQ.AddEvent(eT);
+			//EventThirdType eT = new EventThirdType(field);
+			//eT.eTime = DEVS.GlobalTime;
+			//DEVS.EQ.AddEvent(eT);
 
 			double time = DEVS.EQ.GlobalTime;
 

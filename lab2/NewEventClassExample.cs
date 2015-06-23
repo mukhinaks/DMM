@@ -28,7 +28,7 @@ namespace Game
 						field.getField()[X][Y] = 2;
 						break;
 					default:
-						//field.getField()[X][Y] = 0;
+						field.getField()[X][Y] = 0;
 						break;
 				}
 			//field.getWatchField()[X][Y] = 0;

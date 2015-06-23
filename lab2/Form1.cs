@@ -121,9 +121,9 @@ namespace Game
 				//x++;
 				//y++;
 				field.getField()[y][x] = 2;
-				field.getNextField()[y][x] = 2;
 				Tuple<int, int> t = new Tuple<int,int>(y,x); 
 				field.addBuddy(t);
+				
 				//EventSecondType eS = new EventSecondType(field);
 				//eS.eTime = DEVS.GlobalTime;
 				//DEVS.EQ.AddEvent(eS);

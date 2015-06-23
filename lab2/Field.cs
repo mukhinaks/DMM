@@ -118,7 +118,7 @@ namespace Game
 				{
 					int x = tryBound(X - 1 + k);
 					int y = tryBound(Y - 1 + m);
-					if (getField()[x][y] == 2)
+					if (getField()[x][y] == 2 || getField()[x][y] == 3)
 					{
 						alive++;
 					}
@@ -136,7 +136,7 @@ namespace Game
 				{
 					int x = tryBound(X - 1 + k);
 					int y = tryBound(Y - 1 + m);
-					if (getField()[x][y] == 2)
+					if (getField()[x][y] == 2 || getField()[x][y] == 3)
 					{
 						alive++;
 					}
